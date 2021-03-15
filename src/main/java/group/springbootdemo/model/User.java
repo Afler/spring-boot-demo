@@ -1,0 +1,23 @@
+package group.springbootdemo.model;
+
+import lombok.Data;
+
+import javax.persistence.*;
+
+@Data //getters, setters, constructor(finalField1, finalField2 ...), hashCode(), toString(), equals()
+@Entity
+@Table(name = "users")
+public class User {
+
+    @Id
+    @Column(name = "id")
+    @SequenceGenerator(name = "jpaSeq", sequenceName = "users_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "jpaSeq")
+    private int id;
+
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "age")
+    private int age;
+}
