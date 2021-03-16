@@ -5,10 +5,12 @@ import group.springbootdemo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -34,7 +36,10 @@ public class UserController {
     }
 
     @PostMapping("/user_create")
-    public String createUser(User user) {
+    public String createUser(@Valid User user, BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
+            return "userCreate";
+
         userService.saveUser(user);
         return "redirect:/users";
     }
@@ -48,12 +53,15 @@ public class UserController {
     @GetMapping("/user_update/{id}")
     public String updateUserForm(@PathVariable("id") int id, Model model) {
         User user = userService.findUserById(id);
-        model.addAttribute("user",user);
+        model.addAttribute("user", user);
         return "/userUpdate";
     }
 
     @PostMapping("/user_update")
-    public String updateUser(User user) {
+    public String updateUser(@Valid User user, BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
+            return "userUpdate";
+
         userService.saveUser(user);
         return "redirect:/users";
     }
