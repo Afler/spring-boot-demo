@@ -34,7 +34,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/auth/success")
                 .and()
                 .logout()
-                .permitAll()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/auth/logout", "POST")) //set new logout link, only POST request
                 .invalidateHttpSession(true)
                 .clearAuthentication(true)
