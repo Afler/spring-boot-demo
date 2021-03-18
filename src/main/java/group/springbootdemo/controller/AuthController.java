@@ -8,18 +8,34 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Collections;
 
 @Controller
-public class RegistrationController {
+@RequestMapping("/auth")
+public class AuthController {
+
+    private final UserRepository userRepository;
 
     @Autowired
-    private UserRepository userRepository;
+    public AuthController(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    @GetMapping("/login")
+    public String getLoginPage() {
+        return "login";
+    }
 
     @GetMapping("/registration")
-    public String registration() {
+    public String getRegistrationPage() {
         return "registration";
+    }
+
+    @GetMapping("/success")
+    public String getSuccessPage() {
+        return "success";
     }
 
     @PostMapping("/registration")
@@ -35,6 +51,6 @@ public class RegistrationController {
         user.setRoles(Collections.singleton(Role.USER));
         userRepository.save(user);
 
-        return "redirect:/login";
+        return "redirect:/auth/login";
     }
 }

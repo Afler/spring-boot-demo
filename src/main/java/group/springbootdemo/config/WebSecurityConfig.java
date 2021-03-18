@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
 
@@ -14,26 +15,35 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    private final DataSource dataSource;
+
     @Autowired
-    private DataSource dataSource;
+    public WebSecurityConfig(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .antMatchers("/","/registration").permitAll()
-                    .anyRequest().authenticated()
+                .antMatchers("/", "/auth/registration").permitAll() //any user have access to "/" and "/registration" request
+                .anyRequest().authenticated() //any other request requires authentification
                 .and()
-                    .formLogin()
-                    .loginPage("/login")
-                    .permitAll()
+                .formLogin()
+                .loginPage("/auth/login").permitAll() //any user have access to "/login" request
+                .defaultSuccessUrl("/auth/success")
                 .and()
-                    .logout()
-                    .permitAll();
+                .logout()
+                .permitAll()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/auth/logout", "POST")) //set new logout link, only POST request
+                .invalidateHttpSession(true)
+                .clearAuthentication(true)
+                .deleteCookies("JSESSIONID")
+                .logoutSuccessUrl("/");
     }
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception { //describes user storage with theirs username, pass, role
         auth.jdbcAuthentication()
                 .dataSource(dataSource)
                 .passwordEncoder(NoOpPasswordEncoder.getInstance())

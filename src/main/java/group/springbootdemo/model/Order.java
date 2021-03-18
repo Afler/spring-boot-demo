@@ -36,4 +36,6 @@ public class Order {
 
     @Min(value = 0, message = "Negative cost")
     private double cost;
+
+    private int status;
 }
