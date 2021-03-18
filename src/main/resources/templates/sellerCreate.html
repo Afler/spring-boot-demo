@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create seller</title>
+</head>
+<body>
+<form method="post" th:action="@{/seller_create}" th:object="${seller}" >
+    <label for="name">Name</label>
+    <input type="text" th:field="*{fname}" id="name" placeholder="Name">
+    <div style="color:red" th:if="${#fields.hasErrors('fname')}" th:errors="*{fname}"></div>
+    </br>
+    <label for="sum">Sum</label>
+    <input type="text" th:field="*{sum_profit}" id="sum" placeholder="Sum">
+    <div style="color:red" th:if="${#fields.hasErrors('sum_profit')}" th:errors="*{sum_profit}"></div>
+    </br>
+    <input type="submit" value="Create seller">
+</form>
+</body>
+</html>

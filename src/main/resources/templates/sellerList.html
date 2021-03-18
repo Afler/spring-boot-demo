@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sellers</title>
+</head>
+<body>
+<div th:switch="${sellers}">
+    <h1 th:case="null">No sellers found</h1>
+    <div th:case="*">
+        <h1>Sellers</h1>
+        <table>
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Profit</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="seller : ${sellers}">
+                <td th:text="${seller.id}"></td>
+                <td th:text="${seller.fname}"></td>
+                <td th:text="${seller.sum_profit}"></td>
+                </td>
+                <td><a th:href="@{seller_update/{id}(id=${seller.id})}">Edit</a></td>
+                <td><a th:href="@{seller_delete/{id}(id=${seller.id})}">Delete</a></td>
+                <td><a th:href="@{sel_customers/{id}(id=${seller.id})}">View customers</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><a href="/seller_create">Create seller</a></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Customers</title>
+</head>
+<body>
+<div th:switch="${customers}">
+    <h1 th:case="null">No customers found</h1>
+    <div th:case="*">
+        <h1>Customers</h1>
+        <table>
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="customer : ${customers}">
+                <td th:text="${customer.id}"></td>
+                <td th:text="${customer.fname}"></td>
+                <td th:text="${customer.status}"></td>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><a th:href="@{/sellers}">Go back</a></p>
+</div>
+</body>
+</html>

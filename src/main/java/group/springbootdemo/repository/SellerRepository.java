@@ -1,9 +1,11 @@
 package group.springbootdemo.repository;
 
-import group.springbootdemo.model.User;
+import group.springbootdemo.model.Seller;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 // Spring data automatically create implement of the interface
-public interface UserRepository extends JpaRepository<User, Integer> {
+public interface SellerRepository extends JpaRepository<Seller, Integer> {
+
+    Seller findByFname(String fname);
 
 }
