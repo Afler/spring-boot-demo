@@ -17,4 +17,6 @@ public class Detail {
     private int quantity;
 
     private double price;
+
+    private String name;
 }

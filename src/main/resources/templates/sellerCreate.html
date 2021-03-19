@@ -5,7 +5,7 @@
     <title>Create seller</title>
 </head>
 <body>
-<form method="post" th:action="@{/seller_create}" th:object="${seller}" >
+<form method="post" th:action="@{/seller/create}" th:object="${seller}" >
     <label for="name">Name</label>
     <input type="text" th:field="*{fname}" id="name" placeholder="Name">
     <div style="color:red" th:if="${#fields.hasErrors('fname')}" th:errors="*{fname}"></div>

@@ -11,4 +11,9 @@ public class MainController {
     public String greeting(Model model) {
         return "greetings";
     }
+
+    @GetMapping("/403")
+    public String _403() {
+        return "403";
+    }
 }

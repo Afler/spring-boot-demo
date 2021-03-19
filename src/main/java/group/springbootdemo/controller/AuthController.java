@@ -23,22 +23,22 @@ public class AuthController {
         this.userRepository = userRepository;
     }
 
-    @GetMapping("/login")
+    @GetMapping("login")
     public String getLoginPage() {
         return "login";
     }
 
-    @GetMapping("/registration")
+    @GetMapping("registration")
     public String getRegistrationPage() {
         return "registration";
     }
 
-    @GetMapping("/success")
+    @GetMapping("success")
     public String getSuccessPage() {
         return "success";
     }
 
-    @PostMapping("/registration")
+    @PostMapping("registration")
     public String addUser(User user, Model model) {
         User userFromDB = userRepository.findByUsername(user.getUsername());
 

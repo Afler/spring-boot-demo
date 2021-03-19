@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Access denied</title>
+</head>
+<body>
+<p>Сожалеем, у вас недостаточно прав.</p>
+<form th:action="@{/auth/logout}" method="post">
+    <input type="submit" value="Выйти из системы"/>
+</form>
+</body>
+</html>

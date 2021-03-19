@@ -5,7 +5,7 @@
     <title>Update seller</title>
 </head>
 <body>
-<form method="post" th:action="@{/seller_update}" th:object="${seller}" >
+<form method="post" th:action="@{/seller/update}" th:object="${seller}" >
     <label for="id">Current Id</label>
     <input readonly type="number" th:field="*{id}" id="id" placeholder="ID">
     </br>

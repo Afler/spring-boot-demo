@@ -4,15 +4,21 @@ import group.springbootdemo.model.Customer;
 import group.springbootdemo.model.Seller;
 import group.springbootdemo.service.SellerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 import java.util.List;
 
 @Controller
+@RequestMapping("/seller")
+@PreAuthorize("hasAuthority('SELLER')")
 public class SellerController {
 
     private final SellerService sellerService;
@@ -22,50 +28,50 @@ public class SellerController {
         this.sellerService = sellerService;
     }
 
-    @GetMapping("/sellers")
+    @GetMapping("sellers")
     public String findAllSeller(Model model) {
         List<Seller> sellers = sellerService.findAllSellers();
         model.addAttribute("sellers", sellers);
         return "sellerList";
     }
 
-    @GetMapping("/seller_create")
+    @GetMapping("create")
     public String createSellerForm(Seller seller) {
         return "sellerCreate";
     }
 
-    @PostMapping("/seller_create")
+    @PostMapping("create")
     public String createSeller(@Valid Seller seller, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "sellerCreate";
 
         sellerService.saveSeller(seller);
-        return "redirect:/sellers";
+        return "redirect:/seller/sellers";
     }
 
-    @GetMapping("/seller_delete/{id}")
+    @GetMapping("delete/{id}")
     public String deleteSeller(@PathVariable("id") int id) {
         sellerService.deleteSellerById(id);
-        return "redirect:/sellers";
+        return "redirect:/seller/sellers";
     }
 
-    @GetMapping("/seller_update/{id}")
+    @GetMapping("update/{id}")
     public String updateSellerForm(@PathVariable("id") int id, Model model) {
         Seller seller = sellerService.findSellerById(id);
         model.addAttribute("seller", seller);
         return "sellerUpdate";
     }
 
-    @PostMapping("/seller_update")
+    @PostMapping("update")
     public String updateSeller(@Valid Seller seller, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "sellerUpdate";
 
         sellerService.saveSeller(seller);
-        return "redirect:/sellers";
+        return "redirect:/seller/sellers";
     }
 
-    @GetMapping("sel_customers/{id}")
+    @GetMapping("customers/{id}")
     public String getSellerCustomers(@PathVariable("id") int id, Model model) {
         List<Customer> customers = sellerService.findSellerById(id).getCustomers();
         model.addAttribute("customers", customers);

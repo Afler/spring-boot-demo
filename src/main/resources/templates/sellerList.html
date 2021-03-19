@@ -6,9 +6,9 @@
 </head>
 <body>
 <div>
-    <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+    <h1 th:inline="text">Добро пожаловать, [[${#httpServletRequest.remoteUser}]]!</h1>
     <form th:action="@{/auth/logout}" method="post">
-        <input type="submit" value="Log Out"/>
+        <input type="submit" value="Выйти из системы"/>
     </form>
 </div>
 <div th:switch="${sellers}">
@@ -29,14 +29,14 @@
                 <td th:text="${seller.fname}"></td>
                 <td th:text="${seller.sum_profit}"></td>
                 </td>
-                <td><a th:href="@{seller_update/{id}(id=${seller.id})}">Edit</a></td>
-                <td><a th:href="@{seller_delete/{id}(id=${seller.id})}">Delete</a></td>
-                <td><a th:href="@{sel_customers/{id}(id=${seller.id})}">View customers</a></td>
+                <td><a th:href="@{update/{id}(id=${seller.id})}">Редактировать</a></td>
+                <td><a th:href="@{delete/{id}(id=${seller.id})}">Удалить</a></td>
+                <td><a th:href="@{customers/{id}(id=${seller.id})}">Посмотреть клиентов</a></td>
             </tr>
             </tbody>
         </table>
     </div>
-    <p><a href="/seller_create">Create seller</a></p>
+    <p><a href="/seller/create">Создать нового продавца</a></p>
 </div>
 </body>
 </html>
