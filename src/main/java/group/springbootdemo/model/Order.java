@@ -17,9 +17,11 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "orderSeq")
     private int id;
 
+    /*
     @ManyToOne
     @JoinColumn(name = "seller_id")
     private Seller seller;
+    */
 
     @ManyToOne
     @JoinColumn(name = "customer_id")

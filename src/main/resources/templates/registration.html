@@ -4,8 +4,10 @@
     <title>Spring Security Example </title>
 </head>
 <body>
-Создать нового пользователя
+<div th:if="${message == null}">Создать нового пользователя
+</div>
 <form th:action="@{/auth/registration}" method="post">
+    <div th:if="${message}">Такой пользователь уже существует</div>
     <div><label> Имя пользователя: <input type="text" name="username"/> </label></div>
     <div><label> Пароль: <input type="password" name="password"/> </label></div>
     <div><input type="submit" value="Создать"/></div>
