@@ -67,6 +67,9 @@ public class SellerController {
         if (bindingResult.hasErrors())
             return "sellerUpdate";
 
+        Seller oldSeller = sellerService.findSellerById(seller.getId());
+        seller.setUser(oldSeller.getUser()); //save old user_id
+
         sellerService.saveSeller(seller);
         return "redirect:/seller/sellers";
     }

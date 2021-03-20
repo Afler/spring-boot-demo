@@ -1,7 +1,6 @@
 package group.springbootdemo.model;
 
 import lombok.Data;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -13,15 +12,8 @@ import java.util.Date;
 public class Order {
 
     @Id
-    @SequenceGenerator(name = "orderSeq", sequenceName = "order_order_id_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "orderSeq")
+    @GeneratedValue
     private int id;
-
-    /*
-    @ManyToOne
-    @JoinColumn(name = "seller_id")
-    private Seller seller;
-    */
 
     @ManyToOne
     @JoinColumn(name = "customer_id")

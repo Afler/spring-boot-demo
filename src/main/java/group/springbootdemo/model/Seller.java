@@ -16,8 +16,7 @@ import java.util.List;
 public class Seller {
 
     @Id
-    @SequenceGenerator(name = "sellerSeq", sequenceName = "seller_seller_id_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sellerSeq")
+    @GeneratedValue
     private int id;
 
     @NotEmpty(message = "Empty name")
@@ -25,6 +24,10 @@ public class Seller {
 
     @Min(value = 0, message = "Negative profit")
     private int sum_profit;
+
+    @OneToOne
+    @JoinColumn(name = "user_id", nullable = false, unique = true)
+    private User user;
 
     @OneToMany(mappedBy = "seller", cascade = CascadeType.ALL)
     @Setter(AccessLevel.NONE)
