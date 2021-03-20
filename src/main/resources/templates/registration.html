@@ -6,10 +6,18 @@
 <body>
 <div th:if="${message == null}">Создать нового пользователя
 </div>
-<form th:action="@{/auth/registration}" method="post">
+<form method="post" th:action="@{/auth/registration}" th:object="${user}">
     <div th:if="${message}">Такой пользователь уже существует</div>
     <div><label> Имя пользователя: <input type="text" name="username"/> </label></div>
     <div><label> Пароль: <input type="password" name="password"/> </label></div>
+    <div>
+        <label> Роль:</label>
+            <select th:field="*{roles}">
+                <option th:each="role : ${roleList}"
+                        th:value="${role}"
+                        th:text="${role}"></option>
+            </select>
+    </div>
     <div><input type="submit" value="Создать"/></div>
 </form>
 </body>

@@ -10,8 +10,7 @@ import javax.persistence.*;
 public class Detail {
 
     @Id
-    @SequenceGenerator(name = "detailSeq", sequenceName = "detail_detail_id_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "detailSeq")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     private int quantity;

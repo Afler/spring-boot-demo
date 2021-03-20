@@ -16,7 +16,7 @@ import java.util.List;
 public class Seller {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @NotEmpty(message = "Empty name")
@@ -25,7 +25,7 @@ public class Seller {
     @Min(value = 0, message = "Negative profit")
     private int sum_profit;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", nullable = false, unique = true)
     private User user;
 

@@ -12,7 +12,7 @@ import javax.validation.constraints.NotEmpty;
 public class Customer {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE,
@@ -26,7 +26,7 @@ public class Customer {
     @NotEmpty(message = "Empty name")
     private String fname;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", nullable = false, unique = true)
     private User user;
 }
