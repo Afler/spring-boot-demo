@@ -1,30 +1,15 @@
 package group.springbootdemo;
 
-import group.springbootdemo.repository.CustomerRepository;
-import group.springbootdemo.repository.SellerRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
-public class SpringbootdemoApplication implements CommandLineRunner {
+public class SpringbootdemoApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(SpringbootdemoApplication.class, args);
-    }
-
-    @Autowired
-    SellerRepository sellerRepository;
-
-    @Autowired
-    CustomerRepository customerRepository;
-
-    @Override
-    public void run(String... args) throws Exception {
-
-        //customerRepository.deleteById(11);
     }
 
 }

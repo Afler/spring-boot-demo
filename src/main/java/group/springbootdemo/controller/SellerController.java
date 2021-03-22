@@ -56,7 +56,7 @@ public class SellerController {
     }
 
     @GetMapping("update/{id}")
-    public String updateSellerForm(@PathVariable("id") int id, Model model) {
+    public String getUpdateSellerForm(@PathVariable("id") int id, Model model) {
         Seller seller = sellerService.findSellerById(id);
         model.addAttribute("seller", seller);
         return "sellerUpdate";
