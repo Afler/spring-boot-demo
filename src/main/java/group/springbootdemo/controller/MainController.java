@@ -13,7 +13,7 @@ public class MainController {
     }
 
     @GetMapping("/403")
-    public String _403() {
+    public String get403Page() {
         return "403";
     }
 }

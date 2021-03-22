@@ -6,15 +6,15 @@
 </head>
 <body>
 <div th:switch="${customers}">
-    <h1 th:case="null">No customers found</h1>
+    <h1 th:case="null">Покупателей не найдено</h1>
     <div th:case="*">
         <h1>Customers</h1>
         <table>
             <thead>
             <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Status</th>
+                <th>Идентификатор</th>
+                <th>Имя</th>
+                <th>Статус</th>
             </tr>
             </thead>
             <tbody>

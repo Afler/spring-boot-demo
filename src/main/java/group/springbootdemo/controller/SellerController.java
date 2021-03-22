@@ -18,7 +18,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/seller")
-@PreAuthorize("hasAuthority('SELLER')")
+@PreAuthorize("hasAuthority('SELLER')") //only users with SELLER role have access to /seller/** request
 public class SellerController {
 
     private final SellerService sellerService;

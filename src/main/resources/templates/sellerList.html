@@ -12,15 +12,15 @@
     </form>
 </div>
 <div th:switch="${sellers}">
-    <h1 th:case="null">No sellers found</h1>
+    <h1 th:case="null">Продавцов не найдено</h1>
     <div th:case="*">
-        <h1>Sellers</h1>
+        <h1>Продавцы</h1>
         <table>
             <thead>
             <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Profit</th>
+                <th>Идентификатор</th>
+                <th>Имя</th>
+                <th>Выручка</th>
             </tr>
             </thead>
             <tbody>
