@@ -29,7 +29,7 @@ public class Seller {
 
     @OneToMany(mappedBy = "seller", cascade = CascadeType.ALL)
     @Setter(AccessLevel.NONE)
-    @ToString.Exclude //toString() without this field, otherwise StackOverflowError
+    @ToString.Exclude //toString() without this field, otherwise StackOverflowError because of recursive dependency seller→customer→seller...
     private List<Customer> customers;
 
     public void setCustomers(List<Customer> customers) {
