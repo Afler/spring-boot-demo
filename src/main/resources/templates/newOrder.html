@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
     <title>Новый заказ</title>
@@ -16,21 +18,22 @@
                 <th>Цена</th>
             </tr>
             </thead>
-            <tbody class="detailList">
-            <tr th:each="detail : ${detailList}">
-                <td th:text="${detail.name}"></td>
-                <td th:text="${detail.quantity}"></td>
-                <td th:text="${detail.price}"></td>
+            <tbody class="detail_list">
+            <tr class="detail_row" th:each="detail : ${detailList}">
+                <td class="detail_name" th:text="${detail.name}"></td>
+                <td class="detail_quantity" th:text="${detail.quantity}"></td>
+                <td class="detail_price" th:text="${detail.price}"></td>
                 <td><input type="button" class="add_to_cart" value="Добавить в корзину"/></td>
-                <td><input type="button" class="minus_button count_manipulation_object" value="-" hidden="hidden"/></td>
                 <td class="product_count count_manipulation_object" hidden="hidden">0</td>
-                <td><input type="button" class="plus_button count_manipulation_object" value="+" hidden="hidden"/></td>
-                <td><input type="button" class="set_count_button count_manipulation_object" value="Указать количество" hidden="hidden"/></td>
-                <td><input type="button" class="remove_from_cart count_manipulation_object" value="Удалить из корзины" hidden="hidden"/></td>
+                <td><input type="button" class="set_count_button count_manipulation_object" value="Указать количество"
+                           hidden="hidden"/></td>
+                <td><input type="button" class="remove_from_cart count_manipulation_object" value="Удалить из корзины"
+                           hidden="hidden"/></td>
             </tr>
             </tbody>
         </table>
-        <a href="order/confirm" type="button">Подтвердить заказ</a>
+        <input type="button" class="confirm_button" value="Подтвердить заказ"/>
+        <span ></span>
     </div>
 </div>
 <script th:src="@{/js/newOrder.js}"></script>

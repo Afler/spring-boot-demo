@@ -20,4 +20,8 @@ public class DetailService {
     public List<Detail> findAllDetails() {
         return detailRepository.findAll();
     }
+
+    public Detail findDetailByName(String name){
+        return detailRepository.findDetailByName(name);
+    }
 }

@@ -1,15 +1,14 @@
 package group.springbootdemo.controller;
 
 import group.springbootdemo.model.Detail;
+import group.springbootdemo.model.Order;
 import group.springbootdemo.model.User;
 import group.springbootdemo.service.DetailService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,7 +24,7 @@ public class OrderController {
     }
 
     @GetMapping("new")
-    public String getNewOrderPage(Model model){
+    public String getNewOrderPage(Model model) {
         List<Detail> details = detailService.findAllDetails();
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("detailList", details);
@@ -33,4 +32,5 @@ public class OrderController {
 
         return "newOrder";
     }
+
 }

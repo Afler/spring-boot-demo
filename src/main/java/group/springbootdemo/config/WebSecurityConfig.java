@@ -28,7 +28,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .antMatchers("/", "/auth/registration").permitAll() //any user have access to "/" and "/registration" request
+                    .antMatchers("/hello", "/auth/registration").permitAll() //any user have access to "/" and "/registration" request
                     .anyRequest().authenticated() //any other request requires authentification
                 .and()
                     .formLogin()
@@ -40,7 +40,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .invalidateHttpSession(true)
                     .clearAuthentication(true)
                     .deleteCookies("JSESSIONID")
-                    .logoutSuccessUrl("/") //redirect after logout
+                    .logoutSuccessUrl("/hello") //redirect after logout
                 .and()
                     .exceptionHandling()
                     .accessDeniedPage("/403");
@@ -48,7 +48,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/css/**", "/js/**"); //for unauthorized access to .js and .css file
+        web.ignoring().antMatchers("/css/**", "/js/**","/rest/**"); //for unauthorized access to .js and .css file
     }
 
     @Override

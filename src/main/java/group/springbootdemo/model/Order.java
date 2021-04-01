@@ -1,6 +1,8 @@
 package group.springbootdemo.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -9,6 +11,8 @@ import java.util.Date;
 @Data
 @Entity
 @Table(name = "orders")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Order {
 
     @Id
@@ -16,7 +20,7 @@ public class Order {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "customer_id")
+    @JoinColumn(name = "customer_id", nullable = true)
     private Customer customer;
 
     @ManyToOne
@@ -26,7 +30,7 @@ public class Order {
     @Min(value = 0, message = "Negative quantity")
     private int quantity;
 
-    private Date date;
+    private String date;
 
     @Min(value = 0, message = "Negative cost")
     private double cost;
