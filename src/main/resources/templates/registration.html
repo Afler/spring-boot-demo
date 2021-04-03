@@ -21,7 +21,7 @@
         </select>
     </div>
     <div class="sellerSelector">
-        <label> Ваш продавец:</label>
+        <label> Выберите продаца продавец:</label>
         <select th:field="${seller.id}">
             <option th:each="sellerIter : ${sellerList}"
                     th:value="${sellerIter.getId()}"

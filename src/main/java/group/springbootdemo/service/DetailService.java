@@ -21,7 +21,12 @@ public class DetailService {
         return detailRepository.findAll();
     }
 
-    public Detail findDetailByName(String name){
+    public Detail findDetailByName(String name) {
         return detailRepository.findDetailByName(name);
+    }
+
+
+    public void save(Detail detail) {
+        detailRepository.save(detail);
     }
 }

@@ -26,7 +26,10 @@ public class Customer {
     @NotEmpty(message = "Empty name")
     private String fname;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     @JoinColumn(name = "user_id", nullable = false, unique = true)
     private User user;
+
+
+
 }

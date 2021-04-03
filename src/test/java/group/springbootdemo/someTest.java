@@ -1,9 +1,12 @@
 package group.springbootdemo;
 
-import group.springbootdemo.model.Customer;
-import group.springbootdemo.model.Seller;
+import group.springbootdemo.model.*;
 import group.springbootdemo.repository.CustomerRepository;
 import group.springbootdemo.repository.SellerRepository;
+import group.springbootdemo.service.CustomerService;
+import group.springbootdemo.service.DetailService;
+import group.springbootdemo.service.OrderService;
+import group.springbootdemo.service.UserService;
 import org.checkerframework.checker.units.qual.C;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,9 +16,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.transaction.Transactional;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.entry;
 
 
 @RunWith(SpringRunner.class)
@@ -28,27 +34,60 @@ public class someTest {
     @Autowired
     CustomerRepository customerRepository;
 
+    @Autowired
+    DetailService detailService;
+
+    @Autowired
+    UserService userService;
+
+    @Autowired
+    OrderService orderService;
+
+    @Autowired
+    CustomerService customerService;
+
     @Test
-    public void addCustomer() throws Exception {
-        Customer customer = new Customer();
-        customer.setFname("Everest");
-        customer.setStatus(1);
+    public void test() throws Exception {
+        Detail detail = new Detail();
+        detail.setName("двигатель");
+        detail.setPrice(200.2);
+        detail.setQuantity(5);
 
-        Seller steve = sellerRepository.findByFname("Steve");
-        steve.setCustomers(Arrays.asList(customer));
+        detailService.save(detail);
 
-        sellerRepository.save(steve);
-    }
+        Set<Role> roles_u = new HashSet<Role>(Arrays.asList(Role.USER));
+        Set<Role> roles_s = new HashSet<Role>(Arrays.asList(Role.SELLER));
 
-    @Test
-    public void deleteCustomer() throws Exception {
-        List<Customer> customers = customerRepository.findByFname("Everest");
-        assertThat(customers).hasSize(1);
+        Seller seller = new Seller();
 
-        customerRepository.delete(customers.get(0));
+        User user_s = new User();
+        user_s.setUsername("Genry Ford");
+        user_s.setPassword("2");
+        user_s.setRoles(roles_s);
 
-        List<Seller> sellers = sellerRepository.findAll();
-        assertThat(sellers).hasSize(3);
+        userService.saveUser(user_s, seller);
 
+        User user_u = new User();
+        user_u.setUsername("Alex Mine");
+        user_u.setPassword("1");
+        user_u.setRoles(roles_u);
+
+        userService.saveUser(user_u, seller);
+
+        Customer customer = customerService.findCustomerByName(user_u.getUsername());
+
+        Detail detailFromDB = detailService.findDetailByName("ремень грм форд фокус");
+
+        Order order = new Order();
+        order.setQuantity(5);
+        order.setCost(1863);
+        order.setCustomer(customer);
+        order.setDate("12/11/2020");
+        order.setDetail(detailFromDB);
+        order.setStatus(0);
+
+        orderService.save(order);
+        Customer customer2 = customerService.findCustomerByName("Alex Mine");
+       //orderService.deleteOrderByCustomer(customer2);
     }
 }

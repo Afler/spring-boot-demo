@@ -23,7 +23,7 @@ public class Seller {
     @Min(value = 0, message = "Negative profit")
     private int sum_profit;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     @JoinColumn(name = "user_id", nullable = false, unique = true)
     private User user;
 
