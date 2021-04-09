@@ -27,7 +27,7 @@ public class AuthController {
 
     private SellerService sellerService;
 
-    private List<String> roleList = Arrays.asList(Role.USER.name(), Role.SELLER.name());
+    private List<String> roleList = Arrays.asList(Role.CUSTOMER.name(), Role.SELLER.name());
 
     @Autowired
     public AuthController(UserService userService, SellerService sellerService, CustomerService customerService) {

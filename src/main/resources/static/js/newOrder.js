@@ -1,15 +1,12 @@
-const order = [{}]
-
-function setUserId(id){
+function setUserId(id) {
 
 }
 
 document.querySelector('.confirm_button').onclick = async event => {
 
-    const date = new Date()
-    //const dateStr = date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear()
+    const order = []
 
-    document.querySelectorAll('.detail_row').forEach((row) => {
+    document.querySelectorAll('.detail_row').forEach(row => {
 
         const quantity = parseInt(row.querySelector('.product_count').innerHTML, 10)
 
@@ -23,30 +20,25 @@ document.querySelector('.confirm_button').onclick = async event => {
                     name: row.querySelector('.detail_name').innerHTML
                 },
                 quantity: quantity,
-                date: '',
+                date: null,
                 cost: parseFloat((parseFloat(row.querySelector('.detail_price').innerHTML) * quantity).toFixed(2)),
                 status: 0
             })
         }
     })
 
-    await getFunc()
+    const username = document.querySelector('.currentUsername').innerHTML
 
-    await sendFunc(order).then(response => {
+    await sendFunc(order, username).then(response => {
         console.log('send is ok')
     }, error => {
         console.log('no send')
     })
+
 }
 
-async function getFunc() {
-    const response = await fetch('http://localhost:8081/rest/getName')
-    const text = await response.text()
-    console.log(text)
-}
-
-async function sendFunc(obj) {
-    await fetch('http://localhost:8081/rest/postOrder', {
+async function sendFunc(obj, username) {
+    await fetch('http://localhost:8081/rest/postOrder?username=' + username, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

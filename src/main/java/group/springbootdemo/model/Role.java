@@ -3,7 +3,7 @@ package group.springbootdemo.model;
 import org.springframework.security.core.GrantedAuthority;
 
 public enum Role implements GrantedAuthority {
-    USER, SELLER;
+    CUSTOMER, SELLER;
 
     @Override
     public String getAuthority() {

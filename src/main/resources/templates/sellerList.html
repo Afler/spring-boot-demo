@@ -5,12 +5,6 @@
     <title>Sellers</title>
 </head>
 <body>
-<div>
-    <h1 th:inline="text">Добро пожаловать, [[${#httpServletRequest.remoteUser}]]!</h1>
-    <form th:action="@{/auth/logout}" method="post">
-        <input type="submit" value="Выйти из системы"/>
-    </form>
-</div>
 <div th:switch="${sellers}">
     <h1 th:case="null">Продавцов не найдено</h1>
     <div th:case="*">
@@ -36,6 +30,9 @@
             </tbody>
         </table>
     </div>
+</div>
+<div>
+    <a href="/auth/success">На главную</a>
 </div>
 </body>
 </html>

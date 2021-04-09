@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:switch="${orders}">
+    <h1 th:case="null">Нет заказов</h1>
+    <div th:case="*">
+        <h1>Текущие заказы</h1>
+        <table>
+            <thead>
+            <tr>
+                <th>Цена</th>
+                <th>Дата</th>
+                <th>Количество</th>
+                <th>Статус</th>
+                <th>Покупатель</th>
+                <th>Деталь</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="order : ${orders}">
+                <td th:text="${order.cost}"></td>
+                <td th:text="${order.date}"></td>
+                <td th:text="${order.quantity}"></td>
+                <td th:text="${order.status}"></td>
+                <td th:text="${order.customer.getFname()}"></td>
+                <td th:text="${order.detail.getName()}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div>
+    <a href="/auth/success">На главную</a>
+</div>
+</body>
+</html>

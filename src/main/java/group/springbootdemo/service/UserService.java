@@ -50,7 +50,7 @@ public class UserService implements UserDetailsService { // UserDetService used 
 
         user.setActive(true);
         userRepository.save(user);
-        if (user.getRoles().contains(Role.USER)) {
+        if (user.getRoles().contains(Role.CUSTOMER)) {
             Customer customer = new Customer();
             customer.setSeller(sellerService.findSellerById(sellerParam.getId()));
             customer.setUser(userRepository.findByUsername(user.getUsername()));

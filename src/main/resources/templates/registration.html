@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Spring Security Example </title>
@@ -21,7 +21,7 @@
         </select>
     </div>
     <div class="sellerSelector">
-        <label> Выберите продаца продавец:</label>
+        <label> Выберите своего продавца:</label>
         <select th:field="${seller.id}">
             <option th:each="sellerIter : ${sellerList}"
                     th:value="${sellerIter.getId()}"
@@ -30,6 +30,6 @@
     </div>
     <div><input type="submit" value="Создать"/></div>
 </form>
-<script th:src="@{/js/registration.js}"></script>
+<script th:src="@{/js/reg.js}"></script>
 </body>
 </html>

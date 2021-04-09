@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -24,13 +25,13 @@ public class Order {
     private Customer customer;
 
     @ManyToOne
-    @JoinColumn(name = "detail_id")
+    @JoinColumn(name = "detail_id", nullable = true)
     private Detail detail;
 
     @Min(value = 0, message = "Negative quantity")
     private int quantity;
 
-    private String date;
+    private LocalDate date;
 
     @Min(value = 0, message = "Negative cost")
     private double cost;

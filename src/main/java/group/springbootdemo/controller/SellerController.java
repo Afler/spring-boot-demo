@@ -25,7 +25,7 @@ public class SellerController {
         this.sellerService = sellerService;
     }
 
-    @GetMapping("sellers")
+    @GetMapping("list")
     public String findAllSeller(Model model) {
         List<Seller> sellers = sellerService.findAllSellers();
         model.addAttribute("sellers", sellers);
@@ -44,13 +44,13 @@ public class SellerController {
             return "sellerCreate";
 
         sellerService.saveSeller(seller);
-        return "redirect:/seller/sellers";
+        return "redirect:/seller/list";
     }
 
     @GetMapping("delete/{id}")
     public String deleteSeller(@PathVariable("id") int id) {
         sellerService.deleteSellerById(id);
-        return "redirect:/seller/sellers";
+        return "redirect:/seller/list";
     }
 
     @GetMapping("update/{id}")
@@ -69,7 +69,7 @@ public class SellerController {
         seller.setUser(oldSeller.getUser()); //save old user_id
 
         sellerService.saveSeller(seller);
-        return "redirect:/seller/sellers";
+        return "redirect:/seller/list";
     }
 
     @GetMapping("customers/{id}")

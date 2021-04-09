@@ -7,21 +7,17 @@ import group.springbootdemo.service.CustomerService;
 import group.springbootdemo.service.DetailService;
 import group.springbootdemo.service.OrderService;
 import group.springbootdemo.service.UserService;
-import org.checkerframework.checker.units.qual.C;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import javax.transaction.Transactional;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.entry;
 
 
 @RunWith(SpringRunner.class)
@@ -55,7 +51,7 @@ public class someTest {
 
         detailService.save(detail);
 
-        Set<Role> roles_u = new HashSet<Role>(Arrays.asList(Role.USER));
+        Set<Role> roles_u = new HashSet<Role>(Arrays.asList(Role.CUSTOMER));
         Set<Role> roles_s = new HashSet<Role>(Arrays.asList(Role.SELLER));
 
         Seller seller = new Seller();
@@ -82,7 +78,7 @@ public class someTest {
         order.setQuantity(5);
         order.setCost(1863);
         order.setCustomer(customer);
-        order.setDate("12/11/2020");
+        //order.setDate("12/11/2020");
         order.setDetail(detailFromDB);
         order.setStatus(0);
 
