@@ -4,26 +4,30 @@
 <head>
     <meta charset="UTF-8">
     <title>Главная страница</title>
+    <link href="../css/background.css" th:href="@{/css/background.css}" rel="stylesheet" />
 </head>
 <body>
 <div>
     <h1 th:inline="text">Добро пожаловать, [[${#httpServletRequest.remoteUser}]]!</h1>
-    <form th:action="@{/auth/logout}" method="post">
-        <input type="submit" value="Выйти из системы"/>
-    </form>
 </div>
 </p>
 <div>
     <div sec:authorize="hasAuthority('SELLER')">
         <a href="/seller/list">Список продавцов</a>
-        <p/>
+        </p>
         <a href="/detail/list">Список товаров</a>
-        <p/>
+        </p>
         <a href="/order/list">Список заказов</a>
     </div>
     <div sec:authorize="hasAuthority('CUSTOMER')">
         <a href="/order/new">Сделать заказ</a>
     </div>
+</div>
+</p>
+<div>
+    <form th:action="@{/auth/logout}" method="post">
+        <input type="submit" value="Выйти из системы"/>
+    </form>
 </div>
 </body>
 </html>
