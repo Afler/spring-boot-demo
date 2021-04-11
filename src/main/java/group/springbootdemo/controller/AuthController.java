@@ -23,11 +23,11 @@ import java.util.List;
 @RequestMapping("/auth")
 public class AuthController {
 
-    private UserService userService;
+    private final UserService userService;
 
-    private SellerService sellerService;
+    private final SellerService sellerService;
 
-    private List<String> roleList = Arrays.asList(Role.CUSTOMER.name(), Role.SELLER.name());
+    private final List<String> roleList = Arrays.asList(Role.CUSTOMER.name(), Role.SELLER.name());
 
     @Autowired
     public AuthController(UserService userService, SellerService sellerService, CustomerService customerService) {

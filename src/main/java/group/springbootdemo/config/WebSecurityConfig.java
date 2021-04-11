@@ -28,7 +28,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .antMatchers("/hello", "/auth/registration").permitAll() //any user have access to "/" and "/registration" request
+                    .antMatchers("/hello", "/auth/registration", "/static/**", "/css/**", "/js/**", "/images/**").permitAll() //any user have access to "/" and "/registration" request
                     .anyRequest().authenticated() //any other request requires authentification
                 .and()
                     .formLogin()
@@ -44,11 +44,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                     .exceptionHandling()
                     .accessDeniedPage("/403");
-    }
-
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/static/**","/css/**", "/js/**","/rest/**"); //for unauthorized access to .js and .css file
     }
 
     @Override
