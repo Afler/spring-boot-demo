@@ -34,7 +34,7 @@ public class OrderController {
 
     @GetMapping("new")
     public String getNewOrderPage(Model model) {
-        List<Detail> details = detailService.findAllDetails();
+        List<Detail> details = detailService.findAll();
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("detailList", details);
         model.addAttribute("currentUsername", user.getUsername());
@@ -44,7 +44,7 @@ public class OrderController {
 
     @GetMapping("list")
     public String getOrders(Model model){
-        List<Order> orders = orderService.findAllOrders();
+        List<Order> orders = orderService.findAll();
         model.addAttribute("orders", orders);
 
         return "orderList";

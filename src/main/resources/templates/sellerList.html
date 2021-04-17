@@ -21,7 +21,7 @@
             <tbody>
             <tr th:each="seller : ${sellers}">
                 <td th:text="${seller.id}"></td>
-                <td th:text="${seller.fname}"></td>
+                <td th:text="${seller.name}"></td>
                 <td th:text="${seller.sum_profit}"></td>
                 </td>
                 <td><a th:href="@{update/{id}(id=${seller.id})}">Редактировать</a></td>

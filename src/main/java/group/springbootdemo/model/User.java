@@ -1,6 +1,7 @@
 package group.springbootdemo.model;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -11,6 +12,8 @@ import java.util.Set;
 
 @Entity
 @Data
+@Inheritance(strategy = InheritanceType.JOINED)
+@NoArgsConstructor
 @Table(name = "usr")
 public class User implements UserDetails {
 
@@ -25,6 +28,13 @@ public class User implements UserDetails {
     private String password;
 
     private boolean active;
+
+    public User(@NotEmpty(message = "Empty name") String username, @NotEmpty(message = "Empty password") String password, boolean active, Role role) {
+        this.username = username;
+        this.password = password;
+        this.active = active;
+        this.roles = Set.of(role);
+    }
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))

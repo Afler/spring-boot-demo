@@ -21,12 +21,12 @@
                     th:text="${role}"></option>
         </select>
     </div>
-    <div class="sellerSelector">
+    <div class="sellerSelectorDiv">
         <label> Выберите своего продавца:</label>
         <select th:field="${seller.id}">
             <option th:each="sellerIter : ${sellerList}"
                     th:value="${sellerIter.getId()}"
-                    th:text="${sellerIter.getFname()}"></option>
+                    th:text="${sellerIter.getName()}"></option>
         </select>
     </div>
     <div><input type="submit" value="Создать"/></div>

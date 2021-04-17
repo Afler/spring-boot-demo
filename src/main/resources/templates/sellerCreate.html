@@ -8,8 +8,8 @@
 <body>
 <form method="post" th:action="@{/seller/create}" th:object="${seller}" >
     <label for="name">Name</label>
-    <input type="text" th:field="*{fname}" id="name" placeholder="Name">
-    <div style="color:red" th:if="${#fields.hasErrors('fname')}" th:errors="*{fname}"></div>
+    <input type="text" th:field="*{name}" id="name" placeholder="Name">
+    <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
     </br>
     <label for="sum">Sum</label>
     <input type="text" th:field="*{sum_profit}" id="sum" placeholder="Sum">

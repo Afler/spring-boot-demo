@@ -12,6 +12,11 @@ public class MainController {
         return "greetings";
     }
 
+    @GetMapping("/")
+    public String anotherGreeting(Model model) {
+        return "redirect:/hello";
+    }
+
     @GetMapping("/403")
     public String get403Page() {
         return "403";

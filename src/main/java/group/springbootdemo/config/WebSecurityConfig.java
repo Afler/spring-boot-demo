@@ -28,9 +28,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .antMatchers("/hello", "/auth/registration", "/static/**", "/css/**", "/js/**", "/images/**").permitAll() //any user have access to "/" and "/registration" request
+                    .antMatchers("/hello", "/auth/registration", "/", "/static/**", "/css/**", "/js/**", "/images/**").permitAll() //any user have access to "/" and "/registration" request
                     .anyRequest().authenticated() //any other request requires authentification
-                .and()
+                    .and()
                     .formLogin()
                     .loginPage("/auth/login").permitAll() //any user have access to "/login" request
                     .defaultSuccessUrl("/auth/success") //redirect after successful login

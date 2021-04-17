@@ -1,10 +1,15 @@
-const sellerSelector = document.querySelector('.sellerSelector')
+const sellerSelectorDiv = document.querySelector('.sellerSelectorDiv')
 const roleSelector = document.querySelector('.roleSelector')
 
-roleSelector.addEventListener('change', function () {
-    if (roleSelector.value === "SELLER") {
-        sellerSelector.setAttribute('hidden', 'hidden')
-    } else {
-        sellerSelector.removeAttribute('hidden')
-    }
-})
+if (sellerSelectorDiv.lastElementChild.value === "") {
+    roleSelector.removeChild(roleSelector.firstElementChild);
+    sellerSelectorDiv.setAttribute('hidden', 'hidden')
+} else {
+    roleSelector.addEventListener('change', function () {
+        if (roleSelector.value === "SELLER") {
+            sellerSelectorDiv.setAttribute('hidden', 'hidden')
+        } else {
+            sellerSelectorDiv.removeAttribute('hidden')
+        }
+    })
+}

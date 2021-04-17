@@ -9,7 +9,6 @@ import java.util.List;
 
 @Service
 public class SellerService {
-
     private final SellerRepository sellerRepository;
 
     @Autowired
@@ -17,19 +16,19 @@ public class SellerService {
         this.sellerRepository = sellerRepository;
     }
 
-    public Seller findSellerById(int id) {
+    public Seller findById(int id) {
         return sellerRepository.findById(id).orElse(null);
     }
 
-    public List<Seller> findAllSellers() {
+    public List<Seller> findAll() {
         return sellerRepository.findAll();
     }
 
-    public Seller saveSeller(Seller seller) {
-        return sellerRepository.save(seller);
+    public void save(Seller seller) {
+        sellerRepository.save(seller);
     }
 
-    public void deleteSellerById(int id) {
+    public void deleteById(int id) {
         sellerRepository.deleteById(id);
     }
 

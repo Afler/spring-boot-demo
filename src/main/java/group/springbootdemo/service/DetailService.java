@@ -9,7 +9,6 @@ import java.util.List;
 
 @Service
 public class DetailService {
-
     private final DetailRepository detailRepository;
 
     @Autowired
@@ -17,16 +16,12 @@ public class DetailService {
         this.detailRepository = detailRepository;
     }
 
-    public List<Detail> findAllDetails() {
+    public List<Detail> findAll() {
         return detailRepository.findAll();
     }
 
-    public Detail findDetailByName(String name) {
+    public Detail findByName(String name) {
         return detailRepository.findDetailByName(name);
     }
 
-
-    public void save(Detail detail) {
-        detailRepository.save(detail);
-    }
 }

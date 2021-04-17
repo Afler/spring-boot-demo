@@ -1,5 +1,6 @@
 package group.springbootdemo.controller;
 
+import group.springbootdemo.model.Customer;
 import group.springbootdemo.model.Role;
 import group.springbootdemo.model.Seller;
 import group.springbootdemo.model.User;
@@ -24,15 +25,15 @@ import java.util.List;
 public class AuthController {
 
     private final UserService userService;
-
     private final SellerService sellerService;
-
+    private final CustomerService customerService;
     private final List<String> roleList = Arrays.asList(Role.CUSTOMER.name(), Role.SELLER.name());
 
     @Autowired
-    public AuthController(UserService userService, SellerService sellerService, CustomerService customerService) {
+    public AuthController(UserService userService, SellerService sellerService, CustomerService customerService, CustomerService customerService1) {
         this.userService = userService;
         this.sellerService = sellerService;
+        this.customerService = customerService1;
     }
 
     @GetMapping("login")
@@ -45,7 +46,7 @@ public class AuthController {
                                       @ModelAttribute("seller") Seller seller,
                                       Model model) {
         model.addAttribute("roleList", roleList);
-        model.addAttribute("sellerList", sellerService.findAllSellers());
+        model.addAttribute("sellerList", sellerService.findAll());
 
         return "registration";
     }
@@ -65,18 +66,24 @@ public class AuthController {
         if (userFromDB != null) {
             model.addAttribute("message", "user exist");
             model.addAttribute("roleList", roleList);
-            model.addAttribute("sellerList", sellerService.findAllSellers());
+            model.addAttribute("sellerList", sellerService.findAll());
 
             return "registration";
-        }
-        if (bindingResult.hasErrors()) {
+        } else if (bindingResult.hasErrors()) {
             model.addAttribute("roleList", roleList);
-            model.addAttribute("sellerList", sellerService.findAllSellers());
+            model.addAttribute("sellerList", sellerService.findAll());
 
             return "registration";
-        }
-        userService.save(user, seller);
+        } else {
+            String name = user.getUsername();
+            if (user.getRoles().contains(Role.CUSTOMER)) {
+                customerService.save(new Customer(name, user.getPassword(), true, Role.CUSTOMER, name, 0, seller));
+            } else {
+                sellerService.save(new Seller(name, user.getPassword(), true, Role.SELLER, name, 0));
+            }
 
-        return "redirect:/auth/login";
+            return "redirect:/auth/login";
+        }
+
     }
 }

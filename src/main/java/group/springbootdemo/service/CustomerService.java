@@ -9,7 +9,6 @@ import java.util.List;
 
 @Service
 public class CustomerService {
-
     private final CustomerRepository customerRepository;
 
     @Autowired
@@ -17,21 +16,9 @@ public class CustomerService {
         this.customerRepository = customerRepository;
     }
 
-    public Customer findCustomerById(int id) {
-        return customerRepository.findById(id).orElse(null);
+    public void save(Customer customer) {
+        customerRepository.save(customer);
     }
 
-    public List<Customer> findAllCustomers() {
-        return customerRepository.findAll();
-    }
-
-    public Customer saveCustomer(Customer customer) {
-        return customerRepository.save(customer);
-    }
-
-    public void deleteCustomerById(int id) {
-        customerRepository.deleteById(id);
-    }
-
-    public Customer findCustomerByName(String name) { return customerRepository.findCustomerByFname(name);}
+    public Customer findByName(String name) { return customerRepository.findByName(name);}
 }

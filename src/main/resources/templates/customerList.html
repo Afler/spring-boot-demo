@@ -21,14 +21,16 @@
             <tbody>
             <tr th:each="customer : ${customers}">
                 <td th:text="${customer.id}"></td>
-                <td th:text="${customer.fname}"></td>
+                <td th:text="${customer.name}"></td>
                 <td th:text="${customer.status}"></td>
                 </td>
             </tr>
             </tbody>
         </table>
     </div>
-    <p><a th:href="@{/seller/list}">Назад</a></p>
+    <div>
+        <a href="/seller/list">Назад</a>
+    </div>
 </div>
 </body>
 </html>

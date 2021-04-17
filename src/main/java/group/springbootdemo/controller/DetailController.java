@@ -24,7 +24,7 @@ public class DetailController {
     @GetMapping
     @RequestMapping("list")
     public String gerDetailList(Model model){
-        List<Detail> details = detailService.findAllDetails();
+        List<Detail> details = detailService.findAll();
         model.addAttribute("detailsList", details);
         return "detailList";
     }

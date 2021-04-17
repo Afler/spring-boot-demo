@@ -27,7 +27,7 @@ public class SellerController {
 
     @GetMapping("list")
     public String findAllSeller(Model model) {
-        List<Seller> sellers = sellerService.findAllSellers();
+        List<Seller> sellers = sellerService.findAll();
         model.addAttribute("sellers", sellers);
         return "sellerList";
     }
@@ -43,19 +43,19 @@ public class SellerController {
         if (bindingResult.hasErrors())
             return "sellerCreate";
 
-        sellerService.saveSeller(seller);
+        sellerService.save(seller);
         return "redirect:/seller/list";
     }
 
     @GetMapping("delete/{id}")
     public String deleteSeller(@PathVariable("id") int id) {
-        sellerService.deleteSellerById(id);
+        sellerService.deleteById(id);
         return "redirect:/seller/list";
     }
 
     @GetMapping("update/{id}")
     public String getUpdateSellerForm(@PathVariable("id") int id, Model model) {
-        Seller seller = sellerService.findSellerById(id);
+        Seller seller = sellerService.findById(id);
         model.addAttribute("seller", seller);
         return "sellerUpdate";
     }
@@ -65,16 +65,13 @@ public class SellerController {
         if (bindingResult.hasErrors())
             return "sellerUpdate";
 
-        Seller oldSeller = sellerService.findSellerById(seller.getId());
-        seller.setUser(oldSeller.getUser()); //save old user_id
-
-        sellerService.saveSeller(seller);
+        sellerService.save(seller);
         return "redirect:/seller/list";
     }
 
     @GetMapping("customers/{id}")
     public String getSellerCustomers(@PathVariable("id") int id, Model model) {
-        List<Customer> customers = sellerService.findSellerById(id).getCustomers();
+        List<Customer> customers = sellerService.findById(id).getCustomers();
         model.addAttribute("customers", customers);
         return "customerList";
     }

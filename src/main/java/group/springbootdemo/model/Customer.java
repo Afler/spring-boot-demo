@@ -1,35 +1,41 @@
 package group.springbootdemo.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import java.util.Set;
 
 @Data //getters, setters, requireArgConstructor(finalField1, finalField2 ...), hashCode(), toString(), equals()
 @Entity
 @Table(name = "customers")
-public class Customer {
+@NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
+public class Customer extends User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-
-    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE,
-            CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinColumn(name = "seller_id")
-    private Seller seller;
+    @NotEmpty(message = "Empty name")
+    private String name;
 
     @Min(value = 0, message = "Wrong status")
     private int status;
 
-    @NotEmpty(message = "Empty name")
-    private String fname;
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+    @JoinColumn(name = "seller_id")
+    private Seller seller;
 
-    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.REMOVE})
-    @JoinColumn(name = "user_id", nullable = false, unique = true)
-    private User user;
-
-
-
+    public Customer(@NotEmpty(message = "Empty name") String username,
+                    @NotEmpty(message = "Empty password") String password,
+                    boolean active,
+                    Role role,
+                    @NotEmpty(message = "Empty name") String name,
+                    @Min(value = 0, message = "Wrong status") int status,
+                    Seller seller) {
+        super(username, password, active, role);
+        this.name = name;
+        this.status = status;
+        this.seller = seller;
+    }
 }
