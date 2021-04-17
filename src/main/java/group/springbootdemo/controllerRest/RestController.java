@@ -30,19 +30,19 @@ public class RestController {
 
     @PostMapping(value = "postOrder")
     public void someOrder(@RequestBody List<Order> orders, @RequestParam String username) {
-        List<Order> orderList = orders;
-        Customer customer = customerService.findCustomerByName(username);
-        LocalDate date = LocalDate.now();
+        if (orders != null) {
+            Customer customer = customerService.findCustomerByName(username);
+            LocalDate date = LocalDate.now();
 
-        if (customer != null) {
-            orderList.forEach(order -> {
-                String detailName = order.getDetail().getName();
-                order.setDetail(detailService.findDetailByName(detailName));
-                order.setCustomer(customer);
-                order.setDate(date);
-                orderService.save(order);
-            });
+            if (customer != null) {
+                orders.forEach(order -> {
+                    String detailName = order.getDetail().getName();
+                    order.setDetail(detailService.findDetailByName(detailName));
+                    order.setCustomer(customer);
+                    order.setDate(date);
+                    orderService.save(order);
+                });
+            }
         }
-
     }
 }

@@ -61,14 +61,14 @@ public class someTest {
         user_s.setPassword("2");
         user_s.setRoles(roles_s);
 
-        userService.saveUser(user_s, seller);
+        userService.save(user_s, seller);
 
         User user_u = new User();
         user_u.setUsername("Alex Mine");
         user_u.setPassword("1");
         user_u.setRoles(roles_u);
 
-        userService.saveUser(user_u, seller);
+        userService.save(user_u, seller);
 
         Customer customer = customerService.findCustomerByName(user_u.getUsername());
 

@@ -60,7 +60,7 @@ public class AuthController {
                                   @ModelAttribute("seller") Seller seller,
                                   BindingResult bindingResult,
                                   Model model) {
-        User userFromDB = userService.findUserByUsername(user.getUsername());
+        User userFromDB = userService.findByUsername(user.getUsername());
 
         if (userFromDB != null) {
             model.addAttribute("message", "user exist");
@@ -75,7 +75,7 @@ public class AuthController {
 
             return "registration";
         }
-        userService.saveUser(user, seller);
+        userService.save(user, seller);
 
         return "redirect:/auth/login";
     }

@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link href="../css/background.css" th:href="@{/css/background.css}" rel="stylesheet" />
+    <link media="all" rel="stylesheet" href="/css/background.css" type="text/css"/>
+    <link media="all" rel="stylesheet" href="/css/table.css" type="text/css"/>
 </head>
 <body>
 <div th:switch="${orders}">
     <h1 th:case="null">Нет заказов</h1>
     <div th:case="*">
         <h1>Текущие заказы</h1>
-        <table>
+        <table class="table_sort">
             <thead>
             <tr>
                 <th>Цена</th>
@@ -37,5 +38,6 @@
 <div>
     <a href="/auth/success">На главную</a>
 </div>
+<script th:src="@{/js/sort.js}"></script>
 </body>
 </html>

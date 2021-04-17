@@ -38,6 +38,4 @@ public class OrderService {
         orderRepository.deleteOrderByCustomer(customer);
     }
 
-    public void getOrderDetailName() {
-    }
 }

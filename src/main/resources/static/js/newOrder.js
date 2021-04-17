@@ -1,40 +1,47 @@
-function setUserId(id) {
-
-}
-
 document.querySelector('.confirm_button').onclick = async event => {
+    let order = []
 
-    const order = []
+    let totalQuantity = 0
 
     document.querySelectorAll('.detail_row').forEach(row => {
 
-        const quantity = parseInt(row.querySelector('.product_count').innerHTML, 10)
+            const quantity = parseInt(row.querySelector('.product_count').innerHTML, 10)
 
-        if (quantity > 0) {
+            if (quantity > 0) {
 
-            order.push({
-                detail: {
-                    id: 0,
-                    quantity: 0,
-                    price: 0.0,
-                    name: row.querySelector('.detail_name').innerHTML
-                },
-                quantity: quantity,
-                date: null,
-                cost: parseFloat((parseFloat(row.querySelector('.detail_price').innerHTML) * quantity).toFixed(2)),
-                status: 0
-            })
+                order.push({
+                    detail: {
+                        id: 0,
+                        quantity: 0,
+                        price: 0.0,
+                        name: row.querySelector('.detail_name').innerHTML
+                    },
+                    quantity: quantity,
+                    date: '',
+                    cost: parseFloat((parseFloat(row.querySelector('.detail_price').innerHTML) * quantity).toFixed(2)),
+                    status: 0
+                })
+                ++totalQuantity
+            }
+
         }
-    })
+    )
 
-    const username = document.querySelector('.currentUsername').innerHTML
+    if (totalQuantity === 0) {
+        alert('Пустой заказ')
+    } else {
 
-    await sendFunc(order, username).then(response => {
-        console.log('send is ok')
-    }, error => {
-        console.log('no send')
-    })
+        const username = document.querySelector('.currentUsername').innerHTML
 
+        await sendFunc(order, username).then(response => {
+            console.log('send is ok')
+        }, error => {
+            console.log('no send')
+        })
+
+        order = [];
+        totalQuantity = 0;
+    }
 }
 
 async function sendFunc(obj, username) {
@@ -47,8 +54,9 @@ async function sendFunc(obj, username) {
     }).then(response => {
         if (response.ok) {
             console.log('response is ok')
+            alert('Заказ оформлен')
         } else {
-            console.log('response is bad')
+            console.log('no response')
         }
     }, error => {
         console.log('no response')

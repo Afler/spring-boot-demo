@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class UserService implements UserDetailsService { // UserDetService used by SpringSecurityContext
+public class UserService implements UserDetailsService { // UserDetailService used by SpringSecurityContext
 
     private final UserRepository userRepository;
 
@@ -34,19 +34,19 @@ public class UserService implements UserDetailsService { // UserDetService used 
         return userRepository.findByUsername(username);
     }
 
-    public User findUserById(int id) {
-        return userRepository.findById(id).orElse(null);
+    public User findById(int id) {
+        return userRepository.findById(id);
     }
 
-    public User findUserByUsername(String username) {
+    public User findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
 
-    public List<User> findAllUsers() {
+    public List<User> findAll() {
         return userRepository.findAll();
     }
 
-    public User saveUser(User user, Seller sellerParam) {
+    public User save(User user, Seller sellerParam) {
 
         user.setActive(true);
         userRepository.save(user);
@@ -66,7 +66,7 @@ public class UserService implements UserDetailsService { // UserDetService used 
         return user;
     }
 
-    public void deleteUserById(int id) {
+    public void deleteById(int id) {
         userRepository.deleteById(id);
     }
 }
