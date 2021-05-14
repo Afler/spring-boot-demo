@@ -1,5 +1,6 @@
 package group.springbootdemo.controller;
 
+import group.springbootdemo.model.Customer;
 import group.springbootdemo.model.Detail;
 import group.springbootdemo.model.Order;
 import group.springbootdemo.model.User;
@@ -49,5 +50,13 @@ public class OrderController {
 
         return "orderList";
     }
+    @GetMapping("status")
+    public String getStatus(Model model){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Customer customer = customerService.findByName(user.getUsername());
+        List<Order> orders = orderService.findAllByCustomer(customer);
+        model.addAttribute("orders", orders);
 
+        return "statusOrder";
+    }
 }

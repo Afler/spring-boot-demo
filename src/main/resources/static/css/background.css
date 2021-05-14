@@ -38,9 +38,9 @@ input[type="submit"] {
     display: inline-block;
     padding: 12px 40px;
     margin: 10px 20px;
-    border-style: none;
+    border: 1px solid black;
     border-radius: 30px;
-    background-image: linear-gradient(45deg, #4c555a 0%, #779899 50%, #002878 100%);
+    background-image: linear-gradient(45deg,  #78787d 0%, #909292 50%, #49494b 100%);
     background-position: 100% 0;
     background-size: 200% 200%;
     font-family: 'Montserrat', sans-serif;
@@ -82,9 +82,9 @@ input[type="submit"]:hover {
     display: inline-block;
     padding: 12px 40px;
     margin: 10px 20px;
-    border: none;
+    border: 1px solid black;
     border-radius: 30px;
-    background-image: linear-gradient(45deg, #4c555a 0%, #779899 50%, #002878 100%);
+    background-image: linear-gradient(45deg,  #78787d 0%, #909292 50%, #49494b 100%);
     background-position: 100% 0;
     background-size: 200% 200%;
     font-family: 'Montserrat', sans-serif;

@@ -87,12 +87,19 @@ document.onclick = event => {
                 nodeRow.querySelectorAll('.count_manipulation_object').forEach((elem) => {
                     elem.removeAttribute('style')
                 })
-                return nodeRow.querySelector('.add_to_cart').style.display = 'none'
+                nodeRow.querySelectorAll('.add_to_cart').forEach((elem) => {
+                    elem.setAttribute('class', 'remove_from_cart bot')
+                    elem.setAttribute('value', 'Удалить из корзины')
+                })
+                return 0
             case 'remove_from_cart':
                 nodeRow.querySelectorAll('.count_manipulation_object').forEach((elem) => {
                     elem.setAttribute('style', 'display: none')
                 })
-                nodeRow.querySelector('.add_to_cart').style.display = 'block'
+                nodeRow.querySelectorAll('.remove_from_cart').forEach((elem) => {
+                    elem.setAttribute('class', 'add_to_cart bot')
+                    elem.setAttribute('value', 'Добавить в корзину')
+                })
                 return nodeCount.innerHTML = '0'
         }
     }

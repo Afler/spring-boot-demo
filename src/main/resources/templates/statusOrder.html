@@ -16,10 +16,10 @@
     </tr>
     </thead>
     <tbody class="detail_list">
-    <tr>
-        <td></td>
-        <td></td>
-        <td></td>
+    <tr th:each="order : ${orders}">
+        <td th:text="${order.date}"></td>
+        <td th:text="${order.cost}"></td>
+        <td th:text="${order.status}"></td>
     </tr>
     </tbody>
 </table>

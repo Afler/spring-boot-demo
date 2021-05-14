@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Spring Security Example </title>
-    <link href="../css/background.css" th:href="@{/css/background.css}" rel="stylesheet" />
+    <link th:href="@{/css/background.css}" rel="stylesheet" />
 </head>
 <body>
-<div th:if="${message == null}">Создать нового пользователя</div>
+<div th:if="${message == null}"></div>
 <form method="post" th:action="@{/auth/registration}" th:object="${user}" th:field="${seller.id}">
     <div th:if="${message}" class="er">Такой пользователь уже существует</div>
     <div><label><input type="text" name="username" placeholder="Имя пользователя:"/></label></div>

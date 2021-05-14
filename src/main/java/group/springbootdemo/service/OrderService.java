@@ -1,5 +1,6 @@
 package group.springbootdemo.service;
 
+import group.springbootdemo.model.Customer;
 import group.springbootdemo.model.Order;
 import group.springbootdemo.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,10 @@ public class OrderService {
 
     public List<Order> findAll() {
         return orderRepository.findAll();
+    }
+
+    public List<Order> findAllByCustomer(Customer customer) {
+        return orderRepository.findAllByCustomer(customer);
     }
 
     public void save(Order order) {
