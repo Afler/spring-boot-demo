@@ -85,12 +85,12 @@ document.onclick = event => {
                 break
             case 'add_to_cart':
                 nodeRow.querySelectorAll('.count_manipulation_object').forEach((elem) => {
-                    elem.removeAttribute('hidden')
+                    elem.removeAttribute('style')
                 })
                 return nodeRow.querySelector('.add_to_cart').style.display = 'none'
             case 'remove_from_cart':
                 nodeRow.querySelectorAll('.count_manipulation_object').forEach((elem) => {
-                    elem.setAttribute('hidden', 'hidden')
+                    elem.setAttribute('style', 'display: none')
                 })
                 nodeRow.querySelector('.add_to_cart').style.display = 'block'
                 return nodeCount.innerHTML = '0'

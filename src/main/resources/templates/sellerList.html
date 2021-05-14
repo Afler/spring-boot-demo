@@ -7,7 +7,7 @@
 </head>
 <body>
 <div th:switch="${sellers}">
-    <h1 th:case="null">Продавцов не найдено</h1>
+    <h1 th:case="null" class="er">Продавцов не найдено</h1>
     <div th:case="*">
         <h1>Продавцы</h1>
         <table>
@@ -24,16 +24,16 @@
                 <td th:text="${seller.name}"></td>
                 <td th:text="${seller.sum_profit}"></td>
                 </td>
-                <td><a th:href="@{update/{id}(id=${seller.id})}">Редактировать</a></td>
-                <td><a th:href="@{delete/{id}(id=${seller.id})}">Удалить</a></td>
-                <td><a th:href="@{customers/{id}(id=${seller.id})}">Посмотреть клиентов</a></td>
+                <td><a class="bot" th:href="@{update/{id}(id=${seller.id})}">Редактировать</a></td>
+                <td><a class="bot" th:href="@{delete/{id}(id=${seller.id})}">Удалить</a></td>
+                <td><a class="bot" th:href="@{customers/{id}(id=${seller.id})}">Посмотреть клиентов</a></td>
             </tr>
             </tbody>
         </table>
     </div>
 </div>
-<div>
-    <a href="/auth/success">На главную</a>
+<div class="back">
+    <a href="/auth/success" class="pressed-button">На главную</a>
 </div>
 </body>
 </html>

@@ -9,14 +9,16 @@
 </head>
 <body>
 <div th:switch="${detailList}">
-    <h1 th:case="null">Нет деталей для продажи</h1>
+    <h1 th:case="null" class="er">Нет деталей для продажи</h1>
     <div th:case="*">
+        <h1>Список товаров</h1>
         <table>
             <thead>
             <tr>
                 <th>Название</th>
                 <th>Количество</th>
                 <th>Цена</th>
+                <th>В корзине</th>
             </tr>
             </thead>
             <tbody class="detail_list">
@@ -24,21 +26,21 @@
                 <td class="detail_name" th:text="${detail.name}"></td>
                 <td class="detail_quantity" th:text="${detail.quantity}"></td>
                 <td class="detail_price" th:text="${detail.price}"></td>
-                <td><input type="button" class="add_to_cart" value="Добавить в корзину"/></td>
-                <td class="product_count count_manipulation_object" hidden="hidden">0</td>
-                <td><input type="button" class="set_count_button count_manipulation_object" value="Указать количество"
-                           hidden="hidden"/></td>
-                <td><input type="button" class="remove_from_cart count_manipulation_object" value="Удалить из корзины"
-                           hidden="hidden"/></td>
+                <td class="product_count ">0</td>
+                <td width="150px"><input  type="button"  class="set_count_button count_manipulation_object bot" style="display: none" value="Указать количество"
+                /></td>
+                <td width="150px"><input  style="display: none" type="button" class="remove_from_cart count_manipulation_object bot" value="Удалить из корзины"
+                          /></td>
+                <td><input type="button" class="add_to_cart bot"  value="Добавить в корзину"/></td>
             </tr>
             </tbody>
         </table>
-        <input type="button" class="confirm_button" value="Подтвердить заказ"/>
+        <input type="button" class="confirm_button bot" value="Подтвердить заказ"/>
         <span ></span>
     </div>
 </div>
-<div>
-    <a href="/auth/success">На главную</a>
+<div class="back">
+    <a href="/auth/success" class="pressed-button">На главную</a>
 </div>
 <div class="currentUsername" hidden="hidden" th:text="${currentUsername}"></div>
 <script th:src="@{/js/newOrder.js}"></script>

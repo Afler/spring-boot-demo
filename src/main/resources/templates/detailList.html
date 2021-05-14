@@ -7,7 +7,7 @@
 </head>
 <body>
 <div th:switch="${detailsList}">
-    <h1 th:case="null">Нет товаров для продажи</h1>
+    <h1 th:case="null" class="er">Нет товаров для продажи</h1>
     <div th:case="*">
         <h1>Товары для покупки</h1>
         <table>
@@ -28,8 +28,8 @@
         </table>
     </div>
 </div>
-<div>
-    <a href="/auth/success">На главную</a>
+<div class="back">
+    <a href="/auth/success" class="pressed-button">На главную</a>
 </div>
 </body>
 </html>

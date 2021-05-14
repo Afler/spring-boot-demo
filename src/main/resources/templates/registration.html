@@ -8,17 +8,20 @@
 <body>
 <div th:if="${message == null}">Создать нового пользователя</div>
 <form method="post" th:action="@{/auth/registration}" th:object="${user}" th:field="${seller.id}">
-    <div th:if="${message}">Такой пользователь уже существует</div>
-    <div><label> Имя пользователя: <input type="text" name="username"/></label></div>
+    <div th:if="${message}" class="er">Такой пользователь уже существует</div>
+    <div><label><input type="text" name="username" placeholder="Имя пользователя:"/></label></div>
     <div style="color:red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
-    <div><label> Пароль: <input type="password" name="password"/></label></div>
+    <div><label><input type="password" name="password" placeholder="Пароль:"/></label></div>
     <div style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
     <div>
         <label> Роль:</label>
         <select class="roleSelector" th:field="*{roles}">
-            <option th:each="role : ${roleList}"
-                    th:value="${role}"
-                    th:text="${role}"></option>
+            <option
+                    th:value="CUSTOMER"
+                    th:text="Покупатель"></option>
+            <option
+                    th:value="SELLER"
+                    th:text="Продавец"></option>
         </select>
     </div>
     <div class="sellerSelectorDiv">
@@ -31,6 +34,6 @@
     </div>
     <div><input type="submit" value="Создать"/></div>
 </form>
-<script th:src="@{/js/reg.js}"></script>
+<script src="/js/regUs.js"></script>
 </body>
 </html>

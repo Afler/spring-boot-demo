@@ -7,17 +7,17 @@
 </head>
 <body>
 <form method="post" th:action="@{/seller/update}" th:object="${seller}" >
-    <label for="id">Current Id</label>
+    <label for="id">ID пользователя</label>
     <input readonly type="number" th:field="*{id}" id="id" placeholder="ID">
     </br>
-    <label for="name">Enter name</label>
+    <label for="name">Новое имя</label>
     <input type="text" th:field="*{name}" id="name" placeholder="Name">
     </br>
-    <label for="sum">Enter sum</label>
+    <label for="sum">Введите сумму</label>
     <input type="number" th:field="*{sum_profit}" id="sum" placeholder="Sum">
     <div style="color:red" th:if="${#fields.hasErrors('sum_profit')}" th:errors="*{sum_profit}"></div>
     </br>
-    <input type="submit" value="Update seller">
+    <input type="submit" value="Обновить">
 </form>
 </body>
 </html>
