@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Create seller</title>
-    <link href="../css/background.css" th:href="@{/css/background.css}" rel="stylesheet" />
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
 </head>
 <body>
-<form method="post" th:action="@{/seller/create}" th:object="${seller}" >
+<form class="bot1" method="post" th:action="@{/seller/create}" th:object="${seller}" >
     <label for="name">Name</label>
     <input type="text" th:field="*{name}" id="name" placeholder="Name">
     <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
@@ -15,7 +15,7 @@
     <input type="text" th:field="*{sum_profit}" id="sum" placeholder="Sum">
     <div style="color:red" th:if="${#fields.hasErrors('sum_profit')}" th:errors="*{sum_profit}"></div>
     </br>
-    <input type="submit" value="Create seller">
+    <input class="sub" type="submit" value="Create seller">
 </form>
 </body>
 </html>

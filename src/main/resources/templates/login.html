@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Spring Security Example </title>
-    <link media="all" rel="stylesheet" href="/css/background.css" type="text/css"/>
+    <link media="all" rel="stylesheet" href="/css/style.css" type="text/css"/>
 </head>
 <body>
 <div th:if="${param.error}" class="er">
@@ -12,10 +12,10 @@
 <div th:if="${param.logout}" class="er">
     Вы вышли из системы.
 </div>
-<form th:action="@{/auth/login}" method="post">
+<form class="bot1" th:action="@{/auth/login}" method="post">
     <div><label><input type="text" name="username" placeholder="Имя пользователя: "/> </label></div>
     <div><label><input type="password" name="password" placeholder="Пароль:"/> </label></div>
-    <div><input type="submit" value="Авторизоваться"/></div>
+    <div><input class="sub" type="submit" value="Авторизоваться"/></div>
     <a href="/auth/registration" class="pressed-button">Зарегистрироваться</a>
 </form>
 </body>

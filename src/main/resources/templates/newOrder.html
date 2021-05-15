@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Новый заказ</title>
-    <link href="../css/background.css" th:href="@{/css/background.css}" rel="stylesheet" />
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
 </head>
 <body>
 <div th:switch="${detailList}">
@@ -28,7 +28,7 @@
                 <td class="detail_price" th:text="${detail.price}"></td>
                 <td class="product_count ">0</td>
                 <td><input type="button" class="add_to_cart  bot"  value="Добавить в корзину"/></td>
-                <td width="150px"><input  type="button"  class="set_count_button count_manipulation_object bot" style="display: none" value="Указать количество"
+                <td width="150px"><input type="button"  class="set_count_button count_manipulation_object bot" style="display: none" value="Указать количество"
                 /></td>
             </tr>
             </tbody>

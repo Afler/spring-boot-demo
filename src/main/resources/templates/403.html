@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Доступ запрещен</title>
-    <link href="../css/background.css" th:href="@{/css/background.css}" rel="stylesheet" />
+    <link th:href="@{/css/syle.css}" rel="stylesheet" />
 </head>
 <body>
 <p class="er">Сожалеем, у вас недостаточно прав.</p>
-<form th:action="@{/auth/logout}" method="post">
-    <input type="submit" value="Выйти из системы"/>
+<form class="bot1" th:action="@{/auth/logout}" method="post">
+    <input class="sub" type="submit" value="Выйти из системы"/>
 </form>
 </body>
 </html>

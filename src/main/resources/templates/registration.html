@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Spring Security Example </title>
-    <link th:href="@{/css/background.css}" rel="stylesheet" />
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
 </head>
 <body>
 <div th:if="${message == null}"></div>
-<form method="post" th:action="@{/auth/registration}" th:object="${user}" th:field="${seller.id}">
+<form class="bot1" method="post" th:action="@{/auth/registration}" th:object="${user}" th:field="${seller.id}">
     <div th:if="${message}" class="er">Такой пользователь уже существует</div>
     <div><label><input type="text" name="username" placeholder="Имя пользователя:"/></label></div>
     <div style="color:red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
@@ -32,7 +32,7 @@
                     th:text="${sellerIter.getName()}"></option>
         </select>
     </div>
-    <div><input type="submit" value="Создать"/></div>
+    <div><input class="sub" type="submit" value="Создать"/></div>
 </form>
 <script src="/js/regUs.js"></script>
 </body>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link media="all" rel="stylesheet" href="/css/background.css" type="text/css"/>
+    <link media="all" rel="stylesheet" href="/css/style.css" type="text/css"/>
     <link media="all" rel="stylesheet" href="/css/table.css" type="text/css"/>
 </head>
 <body>
@@ -14,6 +14,7 @@
         <table class="table_sort">
             <thead>
             <tr>
+                <th>ID заказа</th>
                 <th>Цена</th>
                 <th>Дата</th>
                 <th>Количество</th>
@@ -24,12 +25,14 @@
             </thead>
             <tbody>
             <tr th:each="order : ${orders}">
+                <td th:text="${order.id}"></td>
                 <td th:text="${order.cost}"></td>
                 <td th:text="${order.date}"></td>
                 <td th:text="${order.quantity}"></td>
                 <td th:text="${order.status}"></td>
                 <td th:text="${order.customer.getName()}"></td>
                 <td th:text="${order.detail.getName()}"></td>
+                <td><a class="bot change_status_button" th:href="@{changeStatus/{id}(id=${order.id})}">Изменить статус</a></td>
             </tr>
             </tbody>
         </table>

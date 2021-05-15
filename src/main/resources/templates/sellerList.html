@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Продавцы</title>
-    <link href="../css/background.css" th:href="@{/css/background.css}" rel="stylesheet" />
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
 </head>
 <body>
 <div th:switch="${sellers}">
@@ -23,7 +23,6 @@
                 <td th:text="${seller.id}"></td>
                 <td th:text="${seller.name}"></td>
                 <td th:text="${seller.sum_profit}"></td>
-                </td>
                 <td><a class="bot" th:href="@{update/{id}(id=${seller.id})}">Редактировать</a></td>
                 <td><a class="bot" th:href="@{delete/{id}(id=${seller.id})}">Удалить</a></td>
                 <td><a class="bot" th:href="@{customers/{id}(id=${seller.id})}">Посмотреть клиентов</a></td>

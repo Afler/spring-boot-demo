@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Обновление продавца</title>
-    <link href="../css/background.css" th:href="@{/css/background.css}" rel="stylesheet" />
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
 </head>
 <body>
-<form method="post" th:action="@{/seller/update}" th:object="${seller}" >
+<form class="bot1" method="post" th:action="@{/seller/update}" th:object="${seller}" >
     <label for="id">ID пользователя</label>
     <input readonly type="number" th:field="*{id}" id="id" placeholder="ID">
     </br>
@@ -17,7 +17,7 @@
     <input type="number" th:field="*{sum_profit}" id="sum" placeholder="Sum">
     <div style="color:red" th:if="${#fields.hasErrors('sum_profit')}" th:errors="*{sum_profit}"></div>
     </br>
-    <input type="submit" value="Обновить">
+    <input class="sub" type="submit" value="Обновить">
 </form>
 </body>
 </html>

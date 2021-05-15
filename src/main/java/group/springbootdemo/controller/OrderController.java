@@ -12,6 +12,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -44,14 +46,15 @@ public class OrderController {
     }
 
     @GetMapping("list")
-    public String getOrders(Model model){
+    public String getOrders(Model model) {
         List<Order> orders = orderService.findAll();
         model.addAttribute("orders", orders);
 
         return "orderList";
     }
+
     @GetMapping("status")
-    public String getStatus(Model model){
+    public String getStatus(Model model) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Customer customer = customerService.findByName(user.getUsername());
         List<Order> orders = orderService.findAllByCustomer(customer);
@@ -59,4 +62,18 @@ public class OrderController {
 
         return "statusOrder";
     }
+
+    @GetMapping("changeStatus/{id}")
+    public String changeStatus(@PathVariable("id") int id) {
+        Order order = orderService.findOrderById(id);
+        int status = order.getStatus();
+        if (status < 2) {
+            order.setStatus(++status);
+        } else {
+           order.setStatus(0);
+        }
+        orderService.save(order);
+        return "redirect:/order/list";
+    }
+
 }
