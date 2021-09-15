@@ -3,6 +3,9 @@ package group.springbootdemo.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
 
 @Data
 @Entity
@@ -18,4 +21,5 @@ public class Detail {
     private double price;
 
     private String name;
+
 }

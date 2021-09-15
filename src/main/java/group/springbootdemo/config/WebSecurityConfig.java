@@ -29,7 +29,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                     .antMatchers("/hello", "/auth/registration", "/", "/static/**", "/css/**", "/js/**", "/images/**").permitAll() //any user have access to "/" and "/registration" request
-                    .anyRequest().authenticated() //any other request requires authentification
+                    .anyRequest().authenticated() //any other request requires authentication
                     .and()
                     .formLogin()
                     .loginPage("/auth/login").permitAll() //any user have access to "/login" request

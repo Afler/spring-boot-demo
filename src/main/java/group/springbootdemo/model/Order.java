@@ -21,11 +21,11 @@ public class Order {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "customer_id", nullable = true)
+    @JoinColumn(name = "customer_id")
     private Customer customer;
 
     @ManyToOne
-    @JoinColumn(name = "detail_id", nullable = true)
+    @JoinColumn(name = "detail_id")
     private Detail detail;
 
     @Min(value = 0, message = "Negative quantity")
